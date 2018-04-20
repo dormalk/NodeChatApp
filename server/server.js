@@ -14,9 +14,20 @@ app.use(express.static(publicPath));
 io.on('connection',(socket) => {
   console.log('New user connected');
 
+  socket.emit('newMassage', {
+    from: 'me',
+    text: 'Hello everyone!',
+    createAt: new Date().toString()
+  });
+
   socket.on('disconnect',() => {
     console.log('Client disconnected');
   });
+
+  socket.on('createMassage', (massage) => {
+    console.log('createMassage',massage)
+  });
+
 });
 
 server.listen(port,() => {
