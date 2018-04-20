@@ -10,5 +10,5 @@ socket.on('disconnect', function () {
 });
 
 socket.on('newMassage', function (email) {
-  console.log('newEmail',email);
+  console.log('newMassage',email);
 });
