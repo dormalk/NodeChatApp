@@ -18,14 +18,13 @@ io.on('connection',(socket) => {
     console.log('Client disconnected');
   });
 
-  socket.on('createMassage', (massage) => {
-    console.log('createMassage',massage)
-    io.emit('newMassage',{
-      from: massage.from,
-      text: massage.text,
-      createAt: new Date().getTime()
+  socket.on('createMessage', (message) => {
+    console.log('createMessage', message);
+    io.emit('newMessage', {
+      from: message.from,
+      text: message.text,
+      createdAt: new Date().getTime()
     });
-  });
 
 });
 
