@@ -9,14 +9,19 @@ socket.on('disconnect', function () {
 });
 
 socket.on('newMessage', function (message) {
-  console.log('newMessage', message);
+  var li = jQuery('<li></li>');
+  li.text(`${message.from}: ${message.text}`);
+  jQuery('#messages').append(li);
 });
 
-socket.emit('createMessage', {
-  from: 'SomeOne',
-  text: 'SomeText'
-}, function (data) {
-  console.log(data);
+socket.on('newLocationMessage',function(message){
+  var li = jQuery('<li></li>');
+  var a = jQuery('<a target="_blank">Here My Location</a>')
+
+  li.text(`${message.from}: `);
+  a.attr('href',message.url);
+  li.append(a);
+  jQuery('#messages').append(li);
 });
 
 jQuery('#message-form').on('submit', function (e) {
@@ -26,5 +31,19 @@ jQuery('#message-form').on('submit', function (e) {
     text: jQuery('[name=message]').val()
   }, function () {
 
+  });
+});
+
+jQuery('#send-location').on('click', function () {
+  if(!navigator.geolocation){
+    return alert('Geolocation not supported in your device');
+  }
+  navigator.geolocation.getCurrentPosition(function(position){
+    socket.emit('createLocationMessage',{
+      latitude:position.coords.latitude,
+      longitude:position.coords.longitude
+    });
+  },function(){
+    alert('Can not fatch geolocation data');
   });
 });
