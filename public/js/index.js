@@ -11,7 +11,8 @@ socket.on('disconnect', function () {
 socket.on('newMessage', function (message) {
   var li = jQuery('<li></li>');
   li.text(`${message.from}: ${message.text}`);
-  jQuery('#messages').append(li);
+  jQuery('#messages ul').append(li);
+  updateScroll();
 });
 
 socket.on('newLocationMessage',function(message){
@@ -21,10 +22,11 @@ socket.on('newLocationMessage',function(message){
   li.text(`${message.from}: `);
   a.attr('href',message.url);
   li.append(a);
-  jQuery('#messages').append(li);
+  jQuery('#messages ul').append(li);
+  updateScroll();
 });
 
-jQuery('#message-form').on('submit', function (e) {
+jQuery('#message-form form').on('submit', function (e) {
   e.preventDefault();
   socket.emit('createMessage', {
     from: 'User',
@@ -32,6 +34,7 @@ jQuery('#message-form').on('submit', function (e) {
   }, function () {
 
   });
+  jQuery('[name=message]').val("");
 });
 
 jQuery('#send-location').on('click', function () {
@@ -47,3 +50,12 @@ jQuery('#send-location').on('click', function () {
     alert('Can not fatch geolocation data');
   });
 });
+
+jQuery('#openSlide').on('click',function () {
+  jQuery('#options').toggle();
+});
+
+
+function updateScroll() {
+  $("#messages ul").scrollTop($("#messages ul")[0].scrollHeight);
+}
