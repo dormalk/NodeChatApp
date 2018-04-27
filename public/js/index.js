@@ -1,5 +1,8 @@
 var socket = io();
 
+var prevTime=0;
+var myNickname='DoriToS';
+
 socket.on('connect', function () {
   console.log('Connected to server');
 });
@@ -9,14 +12,34 @@ socket.on('disconnect', function () {
 });
 
 socket.on('newMessage', function (message) {
-  var li = jQuery('<li></li>');
+  var classMessage;
+  var formattedTime = moment(message.createdAt).format('h:mm a');
+  if(!(formattedTime===prevTime)){
+    var li =jQuery(`<li class=\"time\">${formattedTime}</li>`)
+    jQuery('#messages ul').append(li);
+    prevTime=formattedTime;
+  }
+  if(message.from === 'Admin') {
+    classMessage = 'adminMessage';
+  }
+  else{
+    classMessage = 'myMessage';
+  }
+  li = jQuery(`<li class=\"${classMessage}\"></li>`);
   li.text(`${message.from}: ${message.text}`);
   jQuery('#messages ul').append(li);
   updateScroll();
 });
 
 socket.on('newLocationMessage',function(message){
-  var li = jQuery('<li></li>');
+  var classMessage;
+  if(message.from === 'Admin') {
+    classMessage = 'adminMessage';
+  }
+  else{
+    classMessage = 'myMessage';
+  }
+  var li = jQuery(`<li class=\"${classMessage}\"></li>`);
   var a = jQuery('<a target="_blank">Here My Location</a>')
 
   li.text(`${message.from}: `);
@@ -24,24 +47,33 @@ socket.on('newLocationMessage',function(message){
   li.append(a);
   jQuery('#messages ul').append(li);
   updateScroll();
+  $('#load').toggle();
 });
 
 jQuery('#message-form form').on('submit', function (e) {
   e.preventDefault();
-  socket.emit('createMessage', {
-    from: 'User',
-    text: jQuery('[name=message]').val()
-  }, function () {
 
-  });
-  jQuery('[name=message]').val("");
+  var messageTextbox = jQuery('[name=message]');
+  if(messageTextbox.val()!==''){
+    socket.emit('createMessage', {
+      from: myNickname,
+      text: messageTextbox.val()
+    }, function () {
+      messageTextbox.val('');
+    });
+  }
 });
 
-jQuery('#send-location').on('click', function () {
+var sendLocation = jQuery('#send-location');
+
+sendLocation.on('click', function () {
+  $('#load').toggle();
+  $('#options').toggle();
   if(!navigator.geolocation){
     return alert('Geolocation not supported in your device');
   }
   navigator.geolocation.getCurrentPosition(function(position){
+
     socket.emit('createLocationMessage',{
       latitude:position.coords.latitude,
       longitude:position.coords.longitude
@@ -51,11 +83,14 @@ jQuery('#send-location').on('click', function () {
   });
 });
 
-jQuery('#openSlide').on('click',function () {
+jQuery('#openOptions').on('click',function () {
   jQuery('#options').toggle();
 });
 
+$('#exit').on('click', function() {
+  $('#options').toggle();
+})
 
 function updateScroll() {
-  $("#messages ul").scrollTop($("#messages ul")[0].scrollHeight);
+  $("#messages").scrollTop($("#messages")[0].scrollHeight);
 }

@@ -5,27 +5,30 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
+    <div id="load"></div>
+    <section id="options">
+      <h3>More Options<button id="exit">x</button></h3>
+      <button id="send-location">Send Location</button>
+      <hr>
+    </section>
     <section id="peoples">
       <h1>Peoples</h1>
       <ul></ul>
     </section>
     <div id="rightWindow">
       <section id="messages">
-        <h1>Chat Window</h1>
         <ul></ul>
-      </section>
-      <section id="options">
-        <div id="send-location"></div>
       </section>
       <section id="message-form">
         <form>
-          <input name="message" type="text" placeholder="Message"/>
+          <input name="message" type="text" placeholder="Message" autofocus autocomplete="off"/>
           <button>Send</button>
         </form>
-        <button id='openSlide'> Send Location</button>
+        <button id='openOptions'>More Options</button>
       </section>
     </div>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/libs/moment/moment.js"></script>
     <script src="/js/libs/jquery-3.3.1.min.js"></script>
     <script src="/js/index.js"></script>
   </body>

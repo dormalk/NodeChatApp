@@ -1,85 +1,158 @@
 body{
-  margin: auto 87px;
+  margin: auto 0;
   flex-direction: row;
   display: flex;
+  background-image: url('.././images/bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
 }
+
+#peoples{
+  width: 10%;
+  min-width: 120px;
+  padding: 0 0 0 30px;
+}
+
 #rightWindow{
-  flex-direction: column;
-  width:100%;
+  width: 90%;
   height: 100vh;
+  background-color: white;
 }
 
-#peoples {
-  padding: 0px 50px;
-  background-color: #336699;
-  color:white;
-  border-radius: 60px 0 60px 0;
+ul{
+  list-style-type: none;
 }
 
-#messages {
-  padding: 0px 50px;
-  background-color: #336699;
-  color:white;
-  height: 85vh;
-  border: 1px solid #336699;
+#peoples h1{
+  font-family: Arial;
+  color: white;
 }
 
-#message-form {
-  padding: 20px 10px;
-  bottom: 0px;
-  height: 7.9vh;
-  background-color: #204060;
-  border-radius: 0 0 15px 15px;
+#messages{
+  height: 91vh;
+  overflow-y: scroll;
 }
 
-#messages ul {
-    background-color: white;
-    color:black;
-    height: 66.8vh;
-    border-radius: 20px 20px 0 0;
-    padding: 20px 20px;
-    overflow-y: scroll;
+#message-form{
+  background-color: #d1d1d1;
+  flex-direction: row;
+  display: flex;
+  padding: 10px 20px 10px 20px;
 }
 
-#options{
+input{
+  width: 46vw;
+  padding: 8px;
+  font-size: 15px;
+  border-radius: 5px;
+  border: 0px;
+  margin-right: 10px;
+}
+button{
+  cursor: pointer;
+}
+#message-form button{
+  background-color: #e68a00;
+  border: 0px;
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+  font-weight: bold;
+  margin-right:10px;
+}
+
+#options {
   display: none;
-  background-color: green;
-  border: 1px dotted #255E17;
-  position: fixed;
-  bottom: 14.7vh;
-  width: 100%;
-  height:50px;
-  width:500px;
+  width: 250px;
+  min-height: 250px;
+  border: 0.5px solid grey;
+  box-shadow: 1px 1px grey;
+  background-color: white;
+  position: absolute;
+  top:25%;
+  left:40%;
+}
+
+#options h3{
+  font-family: Arial;
+  color: white;
+  background-color: orange;
+  padding: 10px;
+  text-align: center;
+  margin: 0;
+}
+
+#exit {
+  position: absolute;
+  right:0px;
+  top:0px;
+  background-color: #ffebcc;
+  color: black;
+  border: 0px;
+  border-radius: 50%;
+  font-size: 16px;
+  margin: 3px;
 }
 
 #send-location{
   display: block;
   background-color: white;
-  width:40px;
-  height:40px;
-}
-
-#message-form input{
-  float: left;
-  padding: 0px 5px;
-  width: 50vw;
-  height: 25px;
-  border-radius: 10px;
-  border: 0.5px solid white;
-}
-
-#message-form button{
-  float: left;
-  background-color: #ba2323;
   border: 0px;
-  border-radius: 9px;
-  cursor: pointer;
-  height:25px;
-  padding: 0px 10px;
-  color: white;
-  margin-left: 15px;
+  background-image: url('.././images/loc.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding-left: 25px;
+  margin:10px auto
 }
 
-ul{
-  list-style-type: none;
+#load {
+  display: none;
+  position: fixed;
+  z-index: 1002;
+  background-image: url('.././images/load.gif');
+  width: 100vw;
+  height:100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(255,255,255,0.5);
+}
+
+.adminMessage{
+  display: inline-block;
+  background-color: #4d4d4d;
+  border-radius: 25px;
+  padding: 10px 25px 10px 25px;
+  font-size: 18px;
+  color:white;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  clear:both;
+  float:left;
+}
+
+.myMessage{
+  display: inline-block;
+  background-color: orange;
+  border-radius: 25px;
+  padding: 10px 25px 10px 25px;
+  font-size: 18px;
+  color:white;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  clear:both;
+  float:left;
+}
+
+.adminMessage a{
+  color: white;
+}
+
+.time{
+  display: block;
+  clear:both;
+  float:left;
+  margin-top: 10px;
+  font-size: 12px;
+  font-family:cursive;
 }
