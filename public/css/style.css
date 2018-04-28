@@ -160,13 +160,26 @@ button{
   float:left;
 }
 
+.userMessage{
+  display: inline-block;
+  background-color: LightGrey;
+  border-radius: 25px;
+  padding: 10px 25px 10px 25px;
+  font-size: 18px;
+  color:DimGray;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  clear:both;
+  float:left;
+}
+
 h4{
   margin:0px;
 }
 p{
   margin: 0px;
 }
-.myMessage a{
+a{
   display: block;
   background-color: white;
   background-image: url('.././images/map.png');

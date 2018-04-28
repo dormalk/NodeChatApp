@@ -1,7 +1,5 @@
 var socket = io();
 
-var myNickname='DoriToS';
-
 socket.on('connect', function () {
   var params = deparam(window.location.search);
   socket.emit('join',params,function(err){
@@ -34,8 +32,11 @@ socket.on('newMessage', function (message) {
       case 'Admin':
         classMessage = 'adminMessage';
         break;
-      default:
+      case deparam(window.location.search).name:
         classMessage = 'myMessage';
+        break;
+      default:
+        classMessage = 'userMessage';
     }
 
     var html = Mustache.render(template,{
@@ -51,16 +52,27 @@ socket.on('newMessage', function (message) {
 socket.on('newLocationMessage',function(message){
   var formattedTime = moment(message.createdAt).format('h:mm a');
   var template = jQuery('#location-message-template').html();
+  var classMessage;
+  switch (message.from) {
+    case 'Admin':
+      classMessage = 'adminMessage';
+      break;
+    case deparam(window.location.search).name:
+      classMessage = 'myMessage';
+      break;
+    default:
+      classMessage = 'userMessage';
+  }
   var html = Mustache.render(template,{
     text:message.text,
-    from: myNickname,
+    from: message.from,
     createdAt:formattedTime,
-    url:message.url
+    url:message.url,
+    classMessage
   });
 
   jQuery('#messages ul').append(html);
   updateScroll();
-  $('#load').toggle();
 });
 
 jQuery('#message-form form').on('submit', function (e) {
@@ -69,7 +81,7 @@ jQuery('#message-form form').on('submit', function (e) {
   var messageTextbox = jQuery('[name=message]');
   if(messageTextbox.val()!==''){
     socket.emit('createMessage', {
-      from: myNickname,
+      from: 'User',
       text: messageTextbox.val()
     }, function () {
       messageTextbox.val('');
@@ -86,11 +98,11 @@ sendLocation.on('click', function () {
     return alert('Geolocation not supported in your device');
   }
   navigator.geolocation.getCurrentPosition(function(position){
-
     socket.emit('createLocationMessage',{
       latitude:position.coords.latitude,
       longitude:position.coords.longitude
     });
+    $('#load').toggle();
   },function(){
     alert('Can not fatch geolocation data');
   });
