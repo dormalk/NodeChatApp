@@ -1,6 +1,5 @@
 var socket = io();
 
-var prevTime=0;
 var myNickname='DoriToS';
 
 socket.on('connect', function () {
@@ -12,40 +11,38 @@ socket.on('disconnect', function () {
 });
 
 socket.on('newMessage', function (message) {
-  var classMessage;
-  var formattedTime = moment(message.createdAt).format('h:mm a');
-  if(!(formattedTime===prevTime)){
-    var li =jQuery(`<li class=\"time\">${formattedTime}</li>`)
-    jQuery('#messages ul').append(li);
-    prevTime=formattedTime;
-  }
-  if(message.from === 'Admin') {
-    classMessage = 'adminMessage';
-  }
-  else{
-    classMessage = 'myMessage';
-  }
-  li = jQuery(`<li class=\"${classMessage}\"></li>`);
-  li.text(`${message.from}: ${message.text}`);
-  jQuery('#messages ul').append(li);
-  updateScroll();
+    var formattedTime = moment(message.createdAt).format('h:mm a');
+    var template = jQuery('#message-template').html();
+    var classMessage;
+    switch (message.from) {
+      case 'Admin':
+        classMessage = 'adminMessage';
+        break;
+      default:
+        classMessage = 'myMessage';
+    }
+
+    var html = Mustache.render(template,{
+      text:message.text,
+      from:message.from,
+      createdAt:formattedTime,
+      classMessage
+    });
+    jQuery('#messages ul').append(html);
+    updateScroll();
 });
 
 socket.on('newLocationMessage',function(message){
-  var classMessage;
-  if(message.from === 'Admin') {
-    classMessage = 'adminMessage';
-  }
-  else{
-    classMessage = 'myMessage';
-  }
-  var li = jQuery(`<li class=\"${classMessage}\"></li>`);
-  var a = jQuery('<a target="_blank">Here My Location</a>')
+  var formattedTime = moment(message.createdAt).format('h:mm a');
+  var template = jQuery('#location-message-template').html();
+  var html = Mustache.render(template,{
+    text:message.text,
+    from: myNickname,
+    createdAt:formattedTime,
+    url:message.url
+  });
 
-  li.text(`${message.from}: `);
-  a.attr('href',message.url);
-  li.append(a);
-  jQuery('#messages ul').append(li);
+  jQuery('#messages ul').append(html);
   updateScroll();
   $('#load').toggle();
 });

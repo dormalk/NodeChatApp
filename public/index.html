@@ -16,7 +16,7 @@
       <ul></ul>
     </section>
     <div id="rightWindow">
-      <section id="messages">
+      <section  id="messages">
         <ul></ul>
       </section>
       <section id="message-form">
@@ -27,8 +27,30 @@
         <button id='openOptions'>More Options</button>
       </section>
     </div>
+
+    <script id="message-template" type="text/template">
+      <li>
+        <div class="time">{{createdAt}}</div>
+        <div class="{{classMessage}}">
+          <h4>{{from}}</h4>
+          <p>{{text}}</p>
+        </div>
+      </li>
+    </script>
+
+    <script id="location-message-template" type="text/template">
+      <li>
+        <div class="time">{{createdAt}}</div>
+        <div class="myMessage">
+          <h4>{{from}}</h4>
+          <p><a href="{{url}}" target="_blank"></a></p>
+        </div>
+      </li>
+    </script>
+
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/libs/moment/moment.js"></script>
+    <script src="/js/libs/mustache.js"></script>
     <script src="/js/libs/jquery-3.3.1.min.js"></script>
     <script src="/js/index.js"></script>
   </body>
