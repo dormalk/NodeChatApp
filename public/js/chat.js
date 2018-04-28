@@ -3,7 +3,17 @@ var socket = io();
 var myNickname='DoriToS';
 
 socket.on('connect', function () {
-  console.log('Connected to server');
+  var params = deparam(window.location.search);
+  console.log(params);
+  socket.emit('join',params,function(err){
+    if(err){
+      alert(err);
+      window.location.href= '/';
+    }else{
+      console.log('No errors')
+    }
+  });
+  console.log("finish");
 });
 
 socket.on('disconnect', function () {

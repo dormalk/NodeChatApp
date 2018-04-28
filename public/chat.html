@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>ChatApp</title>
+  </head>
+  <body>
+    <div id="load"></div>
+    <section id="options">
+      <h3>More Options<button id="exit">x</button></h3>
+      <button id="send-location">Send Location</button>
+      <hr>
+    </section>
+    <section id="peoples">
+      <h1>Peoples</h1>
+      <ul></ul>
+    </section>
+    <div id="rightWindow">
+      <section  id="messages">
+        <ul></ul>
+      </section>
+      <section id="message-form">
+        <form>
+          <input name="message" type="text" placeholder="Message" autofocus autocomplete="off"/>
+          <button>Send</button>
+        </form>
+        <button id='openOptions'>More Options</button>
+      </section>
+    </div>
+
+    <script id="message-template" type="text/template">
+      <li>
+        <time>{{createdAt}}</time>
+        <div class="{{classMessage}}">
+          <h4>{{from}}</h4>
+          <p>{{text}}</p>
+        </div>
+      </li>
+    </script>
+
+    <script id="location-message-template" type="text/template">
+      <li>
+        <time>{{createdAt}}</time>
+        <div class="myMessage">
+          <h4>{{from}}</h4>
+          <p><a href="{{url}}" target="_blank"></a></p>
+        </div>
+      </li>
+    </script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/libs/moment/moment.js"></script>
+    <script src="/js/libs/mustache.js"></script>
+    <script src="/js/libs/deparam.js"></script>
+    <script src="/js/libs/jquery-3.3.1.min.js"></script>
+    <script src="/js/chat.js"></script>
+  </body>
+</html>
