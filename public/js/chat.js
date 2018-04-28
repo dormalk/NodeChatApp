@@ -22,6 +22,10 @@ socket.on('updateUserList',function(users) {
   users.forEach(function(user){
     ul.append(jQuery('<li></li>').text(user));
   });
+  var p = jQuery('<p></p>');
+  jQuery('#topBar').text('');
+  p.text(users.length);
+  jQuery('#topBar').append(p);
 });
 
 socket.on('newMessage', function (message) {

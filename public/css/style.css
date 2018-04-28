@@ -242,3 +242,62 @@ time{
   width:100%;
   color:DimGray;
 }
+#topBar{
+  display: none;
+}
+ @media (max-width: 520px){
+
+   #peoples{
+     display: none;
+   }
+
+   #rightWindow{
+     width:100vw;
+   }
+
+   #message-form input{
+     width:45vw;
+   }
+
+   #message-form button{
+     color: rgba(0,0,0,0);
+     background-repeat: no-repeat;
+     background-position: center;
+     height:40px;
+   }
+
+   #openOptions{
+     display: block;
+     background-image: url('.././images/focus.png');
+     background-size: 25px;
+     width:50px;
+   }
+
+   #send{
+     background-image: url('.././images/send.png');
+     background-size: 30px;
+   }
+   #messages{
+     height: 82vh;
+   }
+   #topBar{
+     background-image: url('.././images/user.png');
+     background-repeat: no-repeat;
+     background-position: 60% 50%;
+     display: block;
+     width:100vw;
+     text-align: center;
+   }
+
+   #topBar p{
+     margin: 15px auto;
+     font-size: 24px;
+     color:white;
+   }
+   body{
+     flex-direction: column;
+   }
+   #options{
+     left:15%;
+   }
+}
