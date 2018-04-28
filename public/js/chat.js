@@ -4,7 +4,6 @@ var myNickname='DoriToS';
 
 socket.on('connect', function () {
   var params = deparam(window.location.search);
-  console.log(params);
   socket.emit('join',params,function(err){
     if(err){
       alert(err);
@@ -13,11 +12,18 @@ socket.on('connect', function () {
       console.log('No errors')
     }
   });
-  console.log("finish");
 });
 
 socket.on('disconnect', function () {
   console.log('Disconnected from server');
+});
+
+socket.on('updateUserList',function(users) {
+  var ul = jQuery('#peoples ul');
+  ul.text('');
+  users.forEach(function(user){
+    ul.append(jQuery('<li></li>').text(user));
+  });
 });
 
 socket.on('newMessage', function (message) {

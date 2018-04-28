@@ -15,7 +15,7 @@ body{
 #peoples{
   width: 10%;
   min-width: 120px;
-  padding: 10px 0 0 30px;
+  padding: 10px 0 0 10px;
 }
 
 #rightWindow{
@@ -213,4 +213,19 @@ time{
 
 .joinPage .input{
   margin-top:10px;
+}
+
+#peoples ul{
+  padding: 0px;
+  width:75%;
+  margin-right: 30px;
+}
+#peoples li{
+  display: inline-block;
+  background-color: rgba(255,255,255,0.8);
+  border-radius: 3px;
+  padding:5px 10px;
+  margin-bottom: 5px;
+  width:100%;
+  color:DimGray;
 }
