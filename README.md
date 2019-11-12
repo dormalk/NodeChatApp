@@ -78,14 +78,14 @@
 
 ![product-screenshot][product-screenshot1]
 
-
-Are u breastfeeding your child? this app is for you!
-Tracking after the times and the final feeded breasts to make feeding effective!
+Create a discrect room chat for discuss with your lover or with your co-workers.<br/>
+It's really easy. choose uniq name for your room, and pick cool nickname and get in to the chat.<br/>
+Don't forget to share the other participents with the room name =)
 
 ### Built With
 
-  * [React](https://reactjs.org/)
-  * [Bootstrap](https://getbootstrap.com/)
+  * [NodeJs](https://nodejs.org/en/)
+  * [Mustache](https://github.com/janl/mustache.js/)
 
 
 
@@ -182,8 +182,8 @@ Project Link: [https://github.com/dormalk/NodeChatApp](https://github.com/dormal
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
-  * [React](https://reactjs.org/)
-  * [Bootstrap](https://getbootstrap.com/)
+  * [NodeJs](https://nodejs.org/en/)
+  * [Mustache](https://github.com/janl/mustache.js/)
 
 
 
@@ -204,23 +204,3 @@ Project Link: [https://github.com/dormalk/NodeChatApp](https://github.com/dormal
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/dor-malka-444b94116/
 [product-screenshot1]: https://i.imgur.com/gIoceuD.png
-
-
-
-# NodeChatApp
-  RealTime ChatApp!
-
-## Implementation 
-  - Server Side 
-    Implements with node.js \
-    Hendle receiving/sending messages with 'socket.io' lib
-    Only users on the same room can communicate
-    Return location of user
-    Holds connected users list
-  - Client Side
-    Implements with HTML,CSS,JS \
-    Hendle register new user to room when first login
-    Presents list of online users in the same room and their messages
-    Optinal send location computer location to all users in the same room
-## Links
-  <a href="https://goo.gl/b77LGg">Link To ChatApp</a>
