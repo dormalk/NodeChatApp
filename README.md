@@ -35,7 +35,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/dormalk/NodeChatApp">
-    <img src="https://i.imgur.com/nPyBg1T.png" alt="logo" width="150" height="150"/>
+    <img src="https://i.imgur.com/mR1jiau.png" alt="logo" width="150" height="150"/>
   </a>
 
   <h3 align="center">Chat Application</h3>
@@ -77,6 +77,8 @@
 ## About The Project
 
 ![product-screenshot][product-screenshot1]
+![product-screenshot][product-screenshot2]
+
 
 Create a discrect room chat for discuss with your lover or with your co-workers.<br/>
 It's really easy. choose uniq name for your room, and pick cool nickname and get in to the chat.<br/>
@@ -203,4 +205,5 @@ Project Link: [https://github.com/dormalk/NodeChatApp](https://github.com/dormal
 [license-url]: https://github.com/dormalk/NodeChatApp/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/dor-malka-444b94116/
-[product-screenshot1]: https://i.imgur.com/gIoceuD.png
+[product-screenshot1]: https://i.imgur.com/xovoFwG.png
+[product-screenshot2]: https://i.imgur.com/Vzlp38V.png
